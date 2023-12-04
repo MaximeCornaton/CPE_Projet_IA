@@ -24,3 +24,6 @@ def remove_files_in_folder(folder_path):
                 print(e)
         return True
     return False
+
+def file_exists(file_path):
+    return os.path.isfile(file_path)
