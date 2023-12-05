@@ -51,3 +51,28 @@ def file_exists(file_path : str) -> bool:
         Bool: True if file exists, False otherwise
     """
     return os.path.isfile(file_path)
+
+def get_files_in_folder(folder_path : str) -> list:
+    """Get all files in a folder
+    Args:
+        folder_path (str): path to the folder
+    Returns:
+        list: list of files in the folder
+    """
+    return os.listdir(folder_path)
+
+def save_text_data(content : str, path : str) -> bool:
+    """Save text data to a file
+    Args:
+        content (str): content to be saved
+        path (str): path to the file
+    Returns:
+        Bool: True if file is saved, False otherwise
+    """
+    try:
+        with open(path, 'w') as f:
+            f.write(content)
+        return True
+    except Exception as e:
+        print(e)
+        return False
