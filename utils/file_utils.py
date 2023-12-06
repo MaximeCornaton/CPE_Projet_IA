@@ -70,7 +70,7 @@ def save_text_data(content : str, path : str) -> bool:
         Bool: True if file is saved, False otherwise
     """
     try:
-        with open(path, 'w') as f:
+        with open(path, 'w', encoding='utf-8') as f:
             f.write(content)
         return True
     except Exception as e:

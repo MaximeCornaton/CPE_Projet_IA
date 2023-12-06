@@ -1,3 +1,6 @@
+import re
+
+
 def has_no_letters(line : str) -> bool:
     """Check if line has no letters
     Args:
@@ -52,3 +55,90 @@ def is_too_short(line : str, min_length : int) -> bool:
         bool: True if line is too short, False otherwise
     """
     return len(line) < min_length
+
+def is_too_long(line : str, max_length : int) -> bool:
+    """Check if line is too long
+    Args:
+        line (str): line to check
+        max_length (int): maximum length of the line
+    Returns:
+        bool: True if line is too long, False otherwise
+    """
+    return len(line) > max_length
+
+def has_not_enough_words(line : str, min_words : int) -> bool:
+    """Check if line has not enough words
+    Args:
+        line (str): line to check
+        min_words (int): minimum number of words in the line
+    Returns:
+        bool: True if line has not enough words, False otherwise
+    """
+    return len(line.split()) < min_words
+
+def has_a_link(line : str) -> bool:
+    """Check if line has a link
+    Args:
+        line (str): line to check
+    Returns:
+        bool: True if line has a link, False otherwise
+    """
+    return 'http' in line
+
+def contains_one_of(line : str, words : list) -> bool:
+    """Check if line contains one of the words
+    Args:
+        line (str): line to check
+        words (list): list of words to check
+    Returns:
+        bool: True if line contains one of the words, False otherwise
+    """
+    return any(word in line for word in words)
+
+def remove_brackets_and_content(line: str) -> str:
+    """Remove content within square brackets from a line
+    Args:
+        line (str): line to remove content within square brackets from
+    Returns:
+        str: line without content within square brackets
+    """
+    return re.sub(r'\[.*?\]', '', line)
+
+def contains_brackets(line : str) -> bool:
+    """Check if line contains brackets
+    Args:
+        line (str): line to check
+    Returns:
+        bool: True if line contains brackets, False otherwise
+    """
+    return '[' in line and ']' in line
+
+def contains_curly_brackets(line : str) -> bool:
+    """Check if line contains curly brackets
+    Args:
+        line (str): line to check
+    Returns:
+        bool: True if line contains curly brackets, False otherwise
+    """
+    return '{' in line and '}' in line
+
+def remove_200E(line : str) -> str:
+    """Remove unicode 200E from a line
+    Args:
+        line (str): line to remove unicode 200E from
+    Returns:
+        str: line without unicode 200E
+    """
+    return line.replace('[U+200E]', '')
+
+def clean_line(line : str) -> str:
+    """Clean a line
+    Args:
+        line (str): line to clean
+    Returns:
+        str: cleaned line
+    """
+    #line = line.strip()
+    line = remove_brackets_and_content(line)
+    line = remove_200E(line)
+    return line
