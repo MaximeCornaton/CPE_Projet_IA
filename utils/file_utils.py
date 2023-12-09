@@ -62,13 +62,17 @@ def get_files_in_folder(folder_path : str) -> list:
     return os.listdir(folder_path)
 
 def save_text_data(content : str, path : str) -> bool:
-    """Save text data to a file
+    """Save text data to a file 
     Args:
         content (str): content to be saved
         path (str): path to the file
     Returns:
-        Bool: True if file is saved, False otherwise
+        Bool: True if file is saved or already exists, False otherwise
     """
+    # if the file already exists, do nothing
+    if file_exists(path):
+        return True
+    # save the file
     try:
         with open(path, 'w', encoding='utf-8') as f:
             f.write(content)

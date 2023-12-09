@@ -141,4 +141,27 @@ def clean_line(line : str) -> str:
     #line = line.strip()
     line = remove_brackets_and_content(line)
     line = remove_200E(line)
+    line = remove_word_from_if_starts_with(line, '^ ')
+    return line
+
+def start_with(line : str, word : str) -> bool:
+    """Check if line starts with word
+    Args:
+        line (str): line to check
+        word (str): word to check
+    Returns:
+        bool: True if line starts with word, False otherwise
+    """
+    return line.startswith(word)
+
+def remove_word_from_if_starts_with(line : str, word : str) -> str:
+    """Remove word from line if line starts with word
+    Args:
+        line (str): line to remove word from
+        word (str): word to check
+    Returns:
+        str: line without word if line starts with word, line otherwise
+    """
+    if start_with(line, word):
+        line = line.replace(word, '', 1)
     return line
