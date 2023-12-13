@@ -80,3 +80,12 @@ def save_text_data(content : str, path : str) -> bool:
     except Exception as e:
         print(e)
         return False
+    
+def num_of_files_in_folder(folder_path : str) -> int:
+    """Get number of files in a folder
+    Args:
+        folder_path (str): path to the folder
+    Returns:
+        int: number of files in the folder
+    """
+    return len(get_files_in_folder(folder_path))
